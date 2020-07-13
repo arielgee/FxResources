@@ -1,0 +1,132 @@
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+
+	/****************************************************************************************/
+	/* Author: MrOtherGuy *******************************************************************/
+	/* Makes tabs to appear on multiple lines ***********************************************/
+	/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_tabs.css */
+	/* Imported from web: 2020-01-02 ********************************************************/
+	/****************************************************************************************/
+	/* Tab reordering will not work and can't be made to work */
+
+	:root{
+		--multirow-n-rows: 4;
+		--multirow-tab-min-width: 80px;
+		--multirow-tab-max-width: 150px;
+		--multirow-tab-dynamic-width: 1; /* Change to 0 for fixed-width tabs using the above width. */
+	}
+
+	#tabbrowser-tabs {
+		min-height: unset !important;
+		padding-inline-start: 0px !important;
+	}
+
+	scrollbox[part][orient="horizontal"] {
+		display: flex;
+		flex-wrap: wrap;
+		overflow-y: auto;
+		max-height: calc(var(--tab-min-height) * var(--multirow-n-rows));
+		scrollbar-color: currentColor transparent;
+		scrollbar-width: thin;
+	}
+
+	#tabbrowser-arrowscrollbox {
+		overflow: -moz-hidden-unscrollable;
+		display: block;
+	}
+
+	.tabbrowser-tab { height: var(--tab-min-height); }
+
+	#tabbrowser-tabs .tabbrowser-tab[pinned] {
+		position: static !important;
+		margin-inline-start: 0px !important;
+	}
+
+	.tabbrowser-tab[fadein]:not([pinned]) {
+		min-width: var(--multirow-tab-min-width) !important;
+		max-width: var(--multirow-tab-max-width) !important;
+		flex-grow: var(--multirow-tab-dynamic-width);
+	}
+
+	.tabbrowser-tab > stack { width: 100%; height: 100%; }
+
+	.tabs-newtab-button { margin: 0 1px 0 auto !important }
+
+	#scrollbutton-up,
+	#scrollbutton-down,
+	#scrollbutton-up~spacer,
+	#alltabs-button,
+	:root:not([customizing]) #TabsToolbar #new-tab-button,
+	#tabbrowser-tabs spacer,
+	.tabbrowser-tab::after {
+		display: none !important;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Shrink the bookmarks toolbar to a button size ****************************************/
+	/****************************************************************************************/
+	#PlacesToolbar {
+		width: 32px !important;
+	}
+
+	#PlacesChevron .toolbarbutton-icon {
+		list-style-image: url("chrome://browser/skin/bookmark-star-on-tray.svg") !important;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Make the toolbar's flexible space REALLY flexible ************************************/
+	/****************************************************************************************/
+	toolbar > toolbarspring {
+		max-width: none !important;
+	}
+
+	toolbar > spacer {
+		max-width: 2px !important;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Firefox account toolbar button *******************************************************/
+	/****************************************************************************************/
+	#fxa-toolbar-menu-button {
+		margin-top: 3px !important;
+	}
+
+	#fxa-toolbar-menu-button > .toolbarbutton-badge-stack {
+		background-color: #f0f0f0 !important;
+	}
+
+	#fxa-toolbar-menu-button:hover > .toolbarbutton-badge-stack {
+		background-color: #a0a0a0 !important;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Center menu-bar and add extra space before first toolbar button **********************/
+	/****************************************************************************************/
+	#menubar-items #main-menubar {
+		margin: 5px 65px 0 0 !important;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Visual grouping of my extensions *****************************************************/
+	/****************************************************************************************/
+	#toolbar-menubar #sage-like_webextension_arielg_il-browser-action {
+		margin-left: 64px !important;
+	}
+
+	#toolbar-menubar #googlencr_webextension_arielg_il-browser-action {
+		margin-right: 64px !important;
+	}
+
+	#toolbar-menubar toolbarbutton[id$=webextension_arielg_il-browser-action] {
+		background-color: rgba(255,255,255,0.15) !important;
+	}
+}
