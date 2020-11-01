@@ -4,7 +4,7 @@
 	/* Author: MrOtherGuy *******************************************************************/
 	/* Makes tabs to appear on multiple lines ***********************************************/
 	/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_tabs.css */
-	/* Imported from web: 2020-01-02 ********************************************************/
+	/* Imported from web: 2020-09-29 ********************************************************/
 	/****************************************************************************************/
 	/* Tab reordering will not work and can't be made to work */
 
@@ -29,6 +29,7 @@
 		scrollbar-width: thin;
 	}
 
+	.scrollbox-clip[orient="horizontal"],
 	#tabbrowser-arrowscrollbox {
 		overflow: -moz-hidden-unscrollable;
 		display: block;
@@ -49,7 +50,8 @@
 
 	.tabbrowser-tab > stack { width: 100%; height: 100%; }
 
-	.tabs-newtab-button { margin: 0 1px 0 auto !important }
+	/* move new-tab-button to the left */
+	#tabs-newtab-button { margin: 0 1px 0 auto !important }
 
 	#scrollbutton-up,
 	#scrollbutton-down,
