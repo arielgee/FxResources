@@ -4,7 +4,7 @@
 	/* Author: MrOtherGuy *******************************************************************/
 	/* Makes tabs to appear on multiple lines ***********************************************/
 	/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_tabs.css */
-	/* Imported from web: 2020-09-29 ********************************************************/
+	/* Imported from web: 2021-06-02 ********************************************************/
 	/****************************************************************************************/
 	/* Tab reordering will not work and can't be made to work */
 
@@ -24,9 +24,10 @@
 		display: flex;
 		flex-wrap: wrap;
 		overflow-y: auto;
-		max-height: calc(var(--tab-min-height) * var(--multirow-n-rows));
+		max-height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px)) * var(--multirow-n-rows));
 		scrollbar-color: currentColor transparent;
 		scrollbar-width: thin;
+		scroll-snap-type: y mandatory;
 	}
 
 	.scrollbox-clip[orient="horizontal"],
@@ -35,7 +36,10 @@
 		display: block;
 	}
 
-	.tabbrowser-tab { height: var(--tab-min-height); }
+	.tabbrowser-tab{
+		height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px))) !important;
+		scroll-snap-align: start;
+	}
 
 	#tabbrowser-tabs .tabbrowser-tab[pinned] {
 		position: static !important;
@@ -62,6 +66,25 @@
 	.tabbrowser-tab::after {
 		display: none !important;
 	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Modify margin lines above & below tabs (cancel floating tabs) ************************/
+	/****************************************************************************************/
+	.tabbrowser-tab {
+		--proton-tab-block-margin: 4px 2px;
+	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Remove tabs bottom border radius (cancel floating tabs) ******************************/
+	/****************************************************************************************/
+	/* .tabbrowser-tab .tab-background {
+		border-bottom-left-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	} */
 
 
 	/****************************************************************************************/
