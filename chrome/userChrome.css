@@ -154,4 +154,14 @@
 	#toolbar-menubar toolbarbutton[id$=webextension_arielg_il-browser-action] {
 		background-color: rgba(255,255,255,0.15) !important;
 	}
+
+
+	/****************************************************************************************/
+	/* Author: arielg ***********************************************************************/
+	/* Hide 'Close Multiple Tabs' sub-menu items. Leave only 'Close Tabs To Right' **********/
+	/****************************************************************************************/
+	#closeTabOptions #context_closeTabsToTheStart,
+	#closeTabOptions #context_closeOtherTabs {
+		display: none;
+	}
 }
