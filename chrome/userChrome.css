@@ -4,7 +4,8 @@
 	/* Author: MrOtherGuy *******************************************************************/
 	/* Makes tabs to appear on multiple lines ***********************************************/
 	/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_tabs.css */
-	/* Imported from web: 2021-06-02 ********************************************************/
+	/* Imported from web: 2021-12-20 ********************************************************/
+	/* Commited on: Nov 21, 2021 ************************************************************/
 	/****************************************************************************************/
 	/* Tab reordering will not work and can't be made to work */
 
@@ -20,11 +21,17 @@
 		padding-inline-start: 0px !important;
 	}
 
+	#scrollbutton-up~spacer,
+	#scrollbutton-up,
+	#scrollbutton-down{
+		display: var(--scrollbutton-display-model,initial)
+	}
+
 	scrollbox[part][orient="horizontal"] {
 		display: flex;
 		flex-wrap: wrap;
 		overflow-y: auto;
-		max-height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px)) * var(--multirow-n-rows));
+		max-height: calc((var(--tab-min-height) + 2 * var(--tab-block-margin,0px)) * var(--multirow-n-rows));
 		scrollbar-color: currentColor transparent;
 		scrollbar-width: thin;
 		scroll-snap-type: y mandatory;
@@ -34,12 +41,10 @@
 	#tabbrowser-arrowscrollbox {
 		overflow: -moz-hidden-unscrollable;
 		display: block;
+		--scrollbutton-display-model: none;
 	}
 
-	.tabbrowser-tab{
-		height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px))) !important;
-		scroll-snap-align: start;
-	}
+	.tabbrowser-tab{ scroll-snap-align: start; }
 
 	#tabbrowser-tabs .tabbrowser-tab[pinned] {
 		position: static !important;
@@ -57,12 +62,9 @@
 	/* move new-tab-button to the left */
 	#tabs-newtab-button { margin: 0 1px 0 auto !important }
 
-	#scrollbutton-up,
-	#scrollbutton-down,
-	#scrollbutton-up~spacer,
 	#alltabs-button,
 	:root:not([customizing]) #TabsToolbar #new-tab-button,
-	#tabbrowser-tabs spacer,
+	#tabbrowser-arrowscrollbox > spacer,
 	.tabbrowser-tab::after {
 		display: none !important;
 	}
@@ -73,7 +75,7 @@
 	/* Modify margin lines above & below tabs (cancel floating tabs) ************************/
 	/****************************************************************************************/
 	.tabbrowser-tab {
-		--proton-tab-block-margin: 4px 2px;
+		--tab-block-margin: 4px 2px;
 	}
 
 
