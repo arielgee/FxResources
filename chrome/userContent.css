@@ -37,8 +37,68 @@
 /* Author: arielg ***********************************************************************/
 /* Remove the search-bar from the Panorama Tab Groups extension view ********************/
 /****************************************************************************************/
-@-moz-document url("moz-extension://ecab81c6-5b6b-41a4-b52b-af26f97c45c0/view.html") {
+@-moz-document url("moz-extension://c2ee803f-1619-4848-903a-084d10b45b30/view.html") {
 	#search\ bar {
 		display: none !important;
+	}
+}
+
+/****************************************************************************************/
+/* Author: arielg ***********************************************************************/
+/* Customize CG console for different environments **************************************/
+/****************************************************************************************/
+@-moz-document regexp("^https:\/\/[a-zA-Z]+\.creditguard\.co\.il:8016\/.*") {
+
+	/* Road6 Environments */
+	@-moz-document url-prefix("https://derecheretzt."), url-prefix("https://derecheretzp.") {
+		:root {
+			--env-name: "Road6" !important;
+			--env-color: #225385 !important;
+		}
+	}
+
+	/* Crml Environments */
+	@-moz-document url-prefix("https://carmeltonemvt."), url-prefix("https://crmlemvp.") {
+		:root {
+			--env-name: "Carmelton" !important;
+			--env-color: #277950 !important;
+		}
+	}
+
+
+	/* Test Environments */
+	@-moz-document url-prefix("https://derecheretzt."), url-prefix("https://carmeltonemvt.") {
+		:root {
+			--env-prod-bk-color: unset;
+			--env-prod-border-size: 0;
+		}
+	}
+
+	/* Production Environments */
+	@-moz-document url-prefix("https://derecheretzp."), url-prefix("https://crmlemvp.") {
+		:root {
+			--env-prod-bk-color: #ecd4d4;
+			--env-prod-border-size: 10px;
+		}
+	}
+
+	html > body { background-color: var(--env-prod-bk-color) !important; }
+
+	html > body > header:first-child {
+		background-color: var(--env-color) !important;
+		padding-left: 1.5% !important;
+		border: solid red !important;
+		border-width: var(--env-prod-border-size) 0 !important;
+	}
+
+	#slogen { color: #4abaae !important; }
+	#slogen::before {
+		content: var(--env-name) !important;
+		font-size: 48px !important;
+		font-weight: bold !important;
+		font-style: italic !important;
+		color: white !important;
+		margin-right: 40px !important;
+		text-shadow: 2px 2px black !important;
 	}
 }
