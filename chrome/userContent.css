@@ -1,3 +1,7 @@
+/****************************************************************************************/
+/* Author: arielg ***********************************************************************/
+/* Replace the organization's 'blockpage' with a middle finger  *************************/
+/****************************************************************************************/
 @-moz-document regexp(".*\/cgi-bin\/blockpage\.cgi\\?ws.*") {
 
 	/* body { display: none !important; } */
@@ -28,6 +32,19 @@
 	html:hover {
 		transition: background-size 1s ease-in 0s !important;
 		background-size: 30% !important;
+	}
+
+	html::before {
+		color: #FF9EAE;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		content: "To copy text, use F12/Inspector to make the HTML ':active'";
+		position: absolute;
+		right: 8px;
+		bottom: 6px;
+	}
+	html:active::before {
+		color: #ff0000 !important;
+		font-size: 110% !important;
 	}
 
 	html:active body { visibility: visible !important; }
